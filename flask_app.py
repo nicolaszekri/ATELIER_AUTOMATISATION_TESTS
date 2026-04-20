@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, redirect, url_for
 from storage import init_db, save_run, list_runs
 from tester.runner import execute_test_run
 import json
@@ -7,15 +7,25 @@ app = Flask(__name__)
 
 init_db()
 
+
 @app.route("/")
 def home():
-    return "API Monitoring App OK"
+    return redirect(url_for("dashboard"))
+
 
 @app.route("/run")
 def run_tests():
     result = execute_test_run()
     save_run(result["api"], result["summary"], result["tests"])
+    return redirect(url_for("dashboard"))
+
+
+@app.route("/api/run")
+def api_run():
+    result = execute_test_run()
+    save_run(result["api"], result["summary"], result["tests"])
     return jsonify(result)
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -36,6 +46,7 @@ def dashboard():
         })
 
     return render_template("dashboard.html", runs=formatted_runs)
+
 
 @app.route("/health")
 def health():
