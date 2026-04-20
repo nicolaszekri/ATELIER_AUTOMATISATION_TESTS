@@ -1,7 +1,7 @@
 # API Choice
 
-- Étudiant :
-- API choisie :
+- Étudiant : Chunk
+- API choisie : https://api.agify.io?name=michael
 - URL base :
 - Documentation officielle / README :
 - Auth : None / API Key / OAuth
