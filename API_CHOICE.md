@@ -1,13 +1,24 @@
 # API Choice
 
-- Étudiant : Chunk
-- API choisie : https://api.agify.io?name=michael
-- URL base :
-- Documentation officielle / README :
-- Auth : None / API Key / OAuth
+- Étudiant : Nicolas Zekri
+- API choisie : Agify
+- URL base : https://api.agify.io
+- Documentation officielle / README : https://agify.io
+- Auth : None
 - Endpoints testés :
-  - GET ...
-  - GET ...
+  - GET /?name=michael
+  - GET /?name=
 - Hypothèses de contrat (champs attendus, types, codes) :
+  - Code HTTP attendu : 200
+  - Réponse au format JSON
+  - Champs attendus : name, age, count
+  - Types attendus :
+    - name : string
+    - age : integer ou null
+    - count : integer
 - Limites / rate limiting connu :
+  - Non précisé, donc on limite volontairement le nombre d'appels
 - Risques (instabilité, downtime, CORS, etc.) :
+  - indisponibilité temporaire
+  - latence variable
+  - champ age potentiellement null selon la requête
